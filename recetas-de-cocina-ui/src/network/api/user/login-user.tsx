@@ -2,7 +2,7 @@ import { config } from "@/config";
 
 export type loginUserRequest = {
   nombre: string;
-  telefono: string;
+  email: string;
 };
 
 export type loginUserResponse = {
@@ -12,7 +12,7 @@ export type loginUserResponse = {
 
 export const loginUser = async ({
   nombre,
-  telefono,
+  email,
 }: loginUserRequest): Promise<loginUserResponse> => {
   try {
     const result = await fetch(`${config.api.url}/login`, {
@@ -22,7 +22,7 @@ export const loginUser = async ({
       },
       body: JSON.stringify({
         nombre,
-        telefono,
+        email,
       }),
     });
 

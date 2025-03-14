@@ -42,9 +42,7 @@ const RegisterUserForm = () => {
       onSuccess: (data) => {
         if (data.success) {
           toast.success("¡Registro exitoso!");
-          setTimeout(() => {
-            router.push("/login");
-          });
+          router.push("/login");
         } else {
           toast.error(data.message || "Error al registrar el usuario.");
         }

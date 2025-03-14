@@ -6,15 +6,15 @@ import { z } from "zod";
 import { toast } from "sonner";
 import { useLoginUserHook } from "@/hooks/user/use-login-user";
 import { useRouter } from "next/router";
-import { signIn } from "next-auth/react";
 import { Fragment } from "react";
 import Link from "next/link";
+import { signIn } from "next-auth/react";
 
 const formSchema = z.object({
   nombre: z.string().min(1, {
     message: "El nombre es requerido.",
   }),
-  telefono: z.string().min(1, {
+  email: z.string().min(1, {
     message: "El teléfono es requerido.",
   }),
 });
@@ -34,17 +34,15 @@ const LoginUserForm = () => {
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
     const result = await signIn("credentials", {
       nombre: values.nombre,
-      telefono: values.telefono,
+      email: values.email,
       redirect: false,
     });
 
-    if (!result?.error) {
-      toast.success("¡Ingreso exitoso!");
-      setTimeout(() => {
-        router.push("/profile");
-      });
-    } else {
+    if (result?.error) {
       toast.error(result.error || "Error al ingresar el usuario.");
+    } else {
+      toast.success("¡Ingreso exitoso!");
+      router.push("/");
     }
   };
 
@@ -75,20 +73,20 @@ const LoginUserForm = () => {
 
           <div>
             <label
-              htmlFor="telefono"
+              htmlFor="email"
               className="block text-sm font-medium text-gray-700"
             >
-              Teléfono
+              Email
             </label>
             <input
-              type="tel"
-              id="telefono"
-              {...register("telefono")}
+              type="email"
+              id="email"
+              {...register("email")}
               className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-gray-500 focus:border-gray-500"
             />
-            {errors.telefono && (
+            {errors.email && (
               <p className="text-sm text-red-500 mt-1">
-                {errors.telefono.message}
+                {errors.email.message}
               </p>
             )}
           </div>
