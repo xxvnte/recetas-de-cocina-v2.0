@@ -1,5 +1,6 @@
+"use client";
+
 import React, { Fragment } from "react";
-import Link from "next/link";
 
 export interface User {
   name: string;
@@ -42,6 +43,7 @@ const Profile = ({ user, userRecipes, favoritesRecipes }: ProfileProps) => {
   const handleRemoveFavorite = (recipeId: number) => {};
 
   const handleDeleteAccount = () => {};
+
   return (
     <Fragment>
       <div className="py-4 mx-40 text-xl rounded-lg bg-gray-100">
@@ -142,7 +144,7 @@ const Profile = ({ user, userRecipes, favoritesRecipes }: ProfileProps) => {
 
         <h2 className="text-2xl font-mono mt-6">Tus recetas favoritas</h2>
         <div className="grid col-span-3 gap-10 mt-6 justify-start">
-          {favoritesRecipes.map((recipe) => (
+          {favoritesRecipes.map((recipe: FavoritesRecipes) => (
             <div
               className="border border-gray-300 py-2 px-12 rounded-lg"
               key={recipe.id}

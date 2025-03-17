@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { FaHeart, FaRegHeart } from "react-icons/fa";
 
 export interface Recipe {
@@ -13,18 +13,11 @@ export interface Recipe {
 
 export interface RecipesProps {
   recipes: Recipe[];
+  favorites: number[];
+  handleFavorite: (recipeId: number) => void;
 }
 
-const Recipes = ({ recipes }: RecipesProps) => {
-  const [favorites, setFavorites] = useState<number[]>([]);
-  const toggleFavorite = (recipeId: number) => {
-    if (favorites.includes(recipeId)) {
-      setFavorites(favorites.filter((id) => id !== recipeId));
-    } else {
-      setFavorites([...favorites, recipeId]);
-    }
-  };
-
+const Recipes = ({ recipes, favorites, handleFavorite }: RecipesProps) => {
   return (
     <div>
       <h2 className="text-center font-mono text-2xl">Recetas</h2>
@@ -61,7 +54,7 @@ const Recipes = ({ recipes }: RecipesProps) => {
               </div>
               <div className="flex justify-end">
                 <button
-                  onClick={() => toggleFavorite(recipe.id)}
+                  onClick={() => handleFavorite(recipe.id)}
                   className="text-red-500 hover:text-red-700 focus:outline-none"
                 >
                   {favorites.includes(recipe.id) ? (
