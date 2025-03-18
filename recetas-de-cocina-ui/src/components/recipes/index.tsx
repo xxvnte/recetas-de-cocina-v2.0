@@ -3,6 +3,7 @@ import { FaHeart, FaRegHeart } from "react-icons/fa";
 
 export interface Recipe {
   id: number;
+  usuarioid: number;
   nombre: string;
   ingredientes: string;
   categoria: string;

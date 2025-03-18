@@ -2,6 +2,7 @@ import { config } from "@/config";
 
 export type addFavoriteRecipeRequest = {
   recetaid: string;
+  usuarioid: string;
 };
 
 export type addFavoriteRecipeResponse = {
@@ -11,18 +12,16 @@ export type addFavoriteRecipeResponse = {
 
 export const addFavoriteRecipe = async ({
   recetaid,
+  usuarioid,
 }: addFavoriteRecipeRequest): Promise<addFavoriteRecipeResponse> => {
   try {
     const result = await fetch(
-      `${config.api.url}/add_favorite?recipeId=${recetaid}`,
+      `${config.api.url}/add_favorite?recipeId=${recetaid}&userId=${usuarioid}`,
       {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({
-          recetaid,
-        }),
         credentials: "include",
       }
     );

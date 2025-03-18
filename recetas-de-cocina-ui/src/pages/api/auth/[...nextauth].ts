@@ -1,6 +1,5 @@
 import NextAuth from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
-import { number } from "zod";
 
 export default NextAuth({
   providers: [

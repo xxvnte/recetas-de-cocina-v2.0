@@ -7,7 +7,7 @@ export type searchRecipeResponse = {
   message: string;
   recipes: {
     recetaid: string;
-    usuario_id: string;
+    usuarioid: string;
     nombre: string;
     ingredientes: string;
     categoria: string;
@@ -25,6 +25,7 @@ export const searchRecipe =
         headers: {
           "Content-Type": "application/json",
         },
+        credentials: "include",
       });
 
       if (!result.ok) {
