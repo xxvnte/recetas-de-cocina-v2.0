@@ -2,29 +2,21 @@ import React, { Fragment } from "react";
 import type { ReactElement } from "react";
 import LandingLayout from "@/components/layout/landing/layout";
 import PopularRecipes from "@/components/popularRecipes";
+import { useSearchRecipeHook } from "@/hooks/recipe/use-search-recipe";
 
 const HomeView = () => {
-  const [popularRecipes, setPopularRecipes] = React.useState([
-    {
-      id: 1,
-      nombre: "Tortilla de patatas",
-      categoria: "Española",
-      votos: 100,
-    },
-    {
-      id: 2,
-      nombre: "Paella",
-      categoria: "Española",
-      votos: 90,
-    },
-    {
-      id: 3,
-      nombre: "Ceviche",
-      categoria: "Peruana",
-      votos: 80,
-    },
-  ]);
-  
+  const { data, isPending, isFetching, isError, error } = useSearchRecipeHook(
+    {}
+  );
+
+  const recipes =
+    data?.recipes.map((recipe) => ({
+      id: Number(recipe.recetaid),
+      nombre: recipe.nombre,
+      categoria: recipe.categoria,
+      votos: Number(recipe.votos),
+    })) || [];
+
   return (
     <Fragment>
       <div className="px-16 py-16">
@@ -38,7 +30,7 @@ const HomeView = () => {
           </p>
         </div>
         <div className="py-8 mx-40 text-xl rounded-lg bg-gray-100">
-          <PopularRecipes popularRecipes={popularRecipes} />
+          <PopularRecipes popularRecipes={recipes} />
         </div>
       </div>
     </Fragment>
