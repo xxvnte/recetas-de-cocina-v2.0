@@ -1,11 +1,11 @@
 import React, { Fragment, ReactElement, useState, useEffect } from "react";
 import LandingLayout from "@/components/layout/landing/layout";
 import Recipes from "@/components/recipes";
-import { useSession } from "next-auth/react";
 import { useSearchRecipeHook } from "@/hooks/recipe/use-search-recipe";
 import { useAddFavoriteRecipeHook } from "@/hooks/recipe/use-addFavorite-recipe";
 import { useRemoveFavoriteRecipeHook } from "@/hooks/recipe/use-removeFavorite-recipe";
 import { useRetrieveProfileUserHook } from "@/hooks/user/use-retrieve-profile-user";
+import { useSession } from "next-auth/react";
 
 interface Recipe {
   id: number;
@@ -119,13 +119,11 @@ const RecipesView = () => {
 
   return (
     <Fragment>
-      <div className="py-8 mx-40 text-xl rounded-lg bg-gray-100">
-        <Recipes
-          recipes={recipes}
-          favorites={favorites}
-          handleFavorite={handleFavorite}
-        />
-      </div>
+      <Recipes
+        recipes={recipes}
+        favorites={favorites}
+        handleFavorite={handleFavorite}
+      />
     </Fragment>
   );
 };

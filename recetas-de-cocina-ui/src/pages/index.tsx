@@ -29,9 +29,7 @@ const HomeView = () => {
             mejores.
           </p>
         </div>
-        <div className="py-8 mx-40 text-xl rounded-lg bg-gray-100">
-          <PopularRecipes popularRecipes={recipes} />
-        </div>
+        <PopularRecipes popularRecipes={recipes} />
       </div>
     </Fragment>
   );

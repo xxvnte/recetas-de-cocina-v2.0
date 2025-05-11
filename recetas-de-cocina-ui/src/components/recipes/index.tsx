@@ -20,7 +20,7 @@ export interface RecipesProps {
 
 const Recipes = ({ recipes, favorites, handleFavorite }: RecipesProps) => {
   return (
-    <div>
+    <div className="py-12 px-4 mx-auto text-xl rounded-lg bg-gray-100">
       <h2 className="text-center font-mono text-2xl">Recetas</h2>
       <div className="grid col-span-3 gap-10 mt-6 justify-center">
         {recipes.map((recipe) => (

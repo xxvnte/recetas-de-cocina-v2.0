@@ -16,9 +16,9 @@ const PopularRecipes = ({ popularRecipes }: PopularRecipesProps) => {
   const mostPopularRecipes = popularRecipes.slice(0, 3);
 
   return (
-    <div>
+    <div className="py-8 px-2 mx-auto text-xl rounded-lg bg-gray-100">
       <h2 className="text-center text-2xl font-mono">Recetas más populares</h2>
-      <div className="flex col-span-3 gap-20 mt-6 justify-center">
+      <div className="flex col-span-3 gap-10 mt-6 justify-center flex-wrap">
         {mostPopularRecipes.map((recipe) => (
           <div
             className="col-md-4 border border-gray-300 py-2 px-6 rounded-lg"
